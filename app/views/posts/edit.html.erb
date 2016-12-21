@@ -1,0 +1,46 @@
+<%= form_for @post, :html => {class: 'form-horizontal'} do |f| %>
+<div class="row"><legend class="col-md-4 col-md-offset-4">Create Post:</legend></div>
+<fieldset>
+    <div class="form-group">
+        <%= f.label :category, 'Category*', class: 'col-md-4 control-label' %>
+        <div class="col-md-5">
+            <%= f.text_field :category, class: 'form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :title, 'Title*', class: 'col-md-4 control-label' %>
+        <div class="col-md-5">
+            <%= f.text_field :title, class: 'form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :location, 'Location*', class: 'col-md-4 control-label' %>
+        <div class="col-md-5">
+            <%= f.text_field :location, class: 'form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :price, 'Price*', class: 'col-md-4 control-label' %>
+        <div class="col-md-5">
+            <%= f.text_field :price, class: 'form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :photo_url, 'Photo URL*', class: 'col-md-4 control-label' %>
+        <div class="col-md-5">
+            <%= f.text_field :photo_url, class: 'form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :content, 'Content*', class: 'col-md-4 control-label' %>
+        <div class="col-md-5">
+            <%= f.text_field :content, class: 'form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-8 col-md-offset-4">
+            <%= f.submit 'Create Account', class: 'btn btn-success' %>
+        </div>
+    </div>
+</fieldset>
+<% end %>

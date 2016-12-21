@@ -1,0 +1,17 @@
+<%= image_tag @user.photo_url, class: "img-responsive" %>
+<p>Name: <%= @user.name %></p>
+<p>Age: <%= @user.age %></p>
+<p>Location: <%= @user.location %></p>
+
+<h1>All Posts</h1>
+<ul>
+  <% @posts.each do |p| %>
+  <li><%= link_to p.title, post_path(p.id)%></li>
+  <% end %>
+</ul>
+<h1>All Users</h1>
+<% @users.each do |u| %>
+<ul>
+<li><%= link_to u.name, user_path(u.id)%></li>
+</ul>
+<% end %>

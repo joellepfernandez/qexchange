@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">QExchange</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home<span class="sr-only">(current)</span></a></li>
+            <li><a href="http://www.textfiles.com/underconstruction/">About<span class="sr-only">(current)</span></a></li>
+            <li><a href="http://www.textfiles.com/underconstruction/">Categories<span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+      <%= form_for @comment, :html => {class: 'form-horizontal'} do |f| %>
+    <div class="row"><legend class="col-md-4 col-md-offset-4">Create Comment:</legend></div>
+    <fieldset>
+        <div class="form-group">
+            <%= f.label :content, 'Content*', class: 'col-md-4 control-label' %>
+            <div class="col-md-5">
+                <%= f.text_field :content, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-8 col-md-offset-4">
+                <%= f.submit 'Create Account', class: 'btn btn-success' %>
+            </div>
+        </div>
+    </fieldset>
+    <% end %>
+    </div>
+  </body>
+</html>

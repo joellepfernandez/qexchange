@@ -1,0 +1,7 @@
+<h1><%= @post.title %></h1>
+<%= @post.inspect %>
+<%= image_tag @post.photo_url, class: "img-responsive" %>
+<p>Price: $<%= @post.price %></p>
+<p>Location: <%= @post.location %></p>
+<%= link_to('Edit me', edit_post_path(@post.id)) %>
+<%= link_to('Delete me', destroy_post_path, method: :delete) %>

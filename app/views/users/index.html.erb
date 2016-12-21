@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-xs-3">
+    <h1>Signed in as:</h1>
+      <%= image_tag current_user.photo_url, class: "img-responsive" %>
+      <p>Name: <%= current_user.name %></p>
+      <p>Age: <%= current_user.age %></p>
+      <p>Location: <%= current_user.location %></p>
+      <p><%= link_to('Edit my profile', edit_user_path(current_user.id)) %></p>
+      <p><%= link_to('Make a Post', new_post_path) %></p>
+      <p><%= link_to "Logout", logout_path, {method: "DELETE"} %></p>
+  </div>
+  <div class="col-xs-9">
+    <h1>All Posts</h1>
+      <ul>
+        <% @posts.each do |p| %>
+        <li><%= link_to p.title, post_path(p.id)%></li>
+        <% end %>
+      </ul>
+    <h1>All Users</h1>
+    <% @users.each do |u| %>
+    <ul>
+      <li><%= link_to u.name, user_path(u.id)%></li>
+    </ul>
+    <% end %>
+  </div>
+</div>
+
+
+<!-- belongs_to :user | has_many :posts ... define @user to = User.first ... @user.posts should have a list of the posts made by user-->
