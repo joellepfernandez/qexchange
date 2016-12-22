@@ -1,13 +1,15 @@
 <div class="row">
   <div class="col-xs-3">
+    <% if logged_in? %>
     <h1>Signed in as:</h1>
-      <%= image_tag current_user.photo_url, class: "img-responsive" %>
-      <p>Name: <%= current_user.name %></p>
-      <p>Age: <%= current_user.age %></p>
-      <p>Location: <%= current_user.location %></p>
-      <p><%= link_to('Edit my profile', edit_user_path(current_user.id)) %></p>
-      <p><%= link_to('Make a Post', new_post_path) %></p>
-      <p><%= link_to "Logout", logout_path, {method: "DELETE"} %></p>
+    <%= image_tag current_user.photo_url, class: "img-responsive" %>
+    <p>Name: <%= current_user.name %></p>
+    <p>Age: <%= current_user.age %></p>
+    <p>Location: <%= current_user.location %></p>
+    <p><%= link_to('Edit my profile', edit_user_path(current_user.id)) %></p>
+    <p><%= link_to('Make a Post', new_post_path) %></p>
+    <p><%= link_to "Logout", logout_path, {method: "DELETE"} %></p>
+    <% end %>
   </div>
   <div class="col-xs-9">
     <h1>All Posts</h1>

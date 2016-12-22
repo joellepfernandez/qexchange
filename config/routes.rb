@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   delete '/posts/:id' => 'posts#destroy', as: :destroy_post
   resources :posts do
     resources :comments
+    post '/posts/:id' => 'posts#comment'
   end
 
   delete '/logout' => 'sessions#destroy', as: :logout

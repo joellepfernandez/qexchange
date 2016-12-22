@@ -35,6 +35,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def comment
+    @post = Post.find(params[:id])
+    Comment.create({post: @post, body: params[:comment][:content], user: current_user})
+    redirect_to post_path(@post)
+  end
+
   def destroy
     @post = Post.find(params[:id])
     @post.delete

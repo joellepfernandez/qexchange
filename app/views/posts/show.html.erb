@@ -5,3 +5,8 @@
 <p>Location: <%= @post.location %></p>
 <%= link_to('Edit me', edit_post_path(@post.id)) %>
 <%= link_to('Delete me', destroy_post_path, method: :delete) %>
+
+<%= form_for @post.comments.new, url: post_path(@post) do |f| %>
+  <%= f.text_area :content %>
+  <%= f.submit %>
+<% end %>
