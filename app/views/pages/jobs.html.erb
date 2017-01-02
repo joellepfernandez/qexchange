@@ -1,2 +1,32 @@
-<h1>Pages#jobs</h1>
-<p>Find me in app/views/pages/jobs.html.erb</p>
+<style media="screen">
+  .post-style{
+    /*width: 20%;
+    height: 20%;*/
+    border: 2px lightgrey solid;
+  }
+  .thumbnail {
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      margin: .15% auto;
+      padding: 0;
+      /*border-radius: 0;*/
+  }
+  .center{
+    text-align: center;
+  }
+  .grid{
+    display: inline-block;
+    border: 1px black lightgrey;
+  }
+</style>
+
+  <h1 class="white">All Jobs Posts</h1>
+  <% @posts.where(category: 'Jobs').each do |p| %>
+    <div class="grid center">
+      <%= link_to image_tag(p.photo_url ||= "no-image.png", class: "post-style thumbnail"), post_path(p.id) %>
+      <h6 class="center"><%= link_to "#{p.title} | #{p.location} | $#{p.price}", post_path(p.id), class: "white" %></h6>
+    </div>
+    <% end %>

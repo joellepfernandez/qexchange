@@ -1,17 +1,39 @@
-<%= image_tag @user.photo_url, class: "img-responsive" %>
-<p>Name: <%= @user.name %></p>
-<p>Age: <%= @user.age %></p>
-<p>Location: <%= @user.location %></p>
-
-<h1>All Posts</h1>
-<ul>
-  <% @posts.each do |p| %>
-  <li><%= link_to p.title, post_path(p.id)%></li>
-  <% end %>
-</ul>
-<h1>All Users</h1>
-<% @users.each do |u| %>
-<ul>
-<li><%= link_to u.name, user_path(u.id)%></li>
-</ul>
-<% end %>
+<style media="screen">
+  .center {
+    margin: auto;
+    text-align: center;
+  }
+  .inline-block{
+    display: inline-block;
+  }
+  .profile-info{
+    padding: auto;
+  }
+  .profile-image{
+    width: 20%;
+  }
+  .social-icon{
+    width: 2%;
+  }
+</style>
+<h1 class="white">More about <%= @user.name %></h1>
+  <hr>
+    <%= image_tag @user.photo_url, class: "img-circle img-responsive profile-image center" %>
+      <h1 class="text-center white"><%= @user.name %>, <%= @user.age %></h1>
+        <h2 class="text-center white"><%= @user.location %></h2>
+          <div class="center">
+            <%= link_to image_tag('facebook_icon.png', class: "social-icon center"), @user.facebook_url %>
+            <%= link_to image_tag('instagram_icon.png', class: "social-icon"), @user.instagram_url %>
+            <%= link_to image_tag('tumblr_icon.png', class: "social-icon"), @user.tumblr_url%>
+            <%= link_to image_tag('twitter_icon.png', class: "social-icon"), @user.twitter_url%>
+            <%= link_to image_tag('linkedin_icon.png', class: "social-icon"), @user.linkedin_url%>
+          </div>
+        <hr>
+    <div class="white">
+      <h3 class="white">Posts by <%= @user.name %></h3>
+      <ul>
+        <% @posts.each do |p| %>
+        <li><%= link_to p.title, post_path(p.id), class: "white"%></li>
+        <% end %>
+      </ul>
+    </div>

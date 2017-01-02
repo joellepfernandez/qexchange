@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
+  get '/search' => 'pages#search', as: :search
+
   get '/help' => 'pages#help', as: :help
 
   get '/about' => 'pages#about'
@@ -23,14 +25,20 @@ Rails.application.routes.draw do
 
   get '/categories/services' => 'pages#services', as: :services
 
+  get '/categories/meetups' => 'pages#meet_ups', as: :meet_ups
+
+  get '/categories/jobs' => 'pages#jobs', as: :jobs
+
+  get '/categories/housing' => 'pages#housing', as: :housing
+
   delete '/users/:id' => 'users#destroy', as: :destroy_user
   resources :users
 
   delete '/posts/:id' => 'posts#destroy', as: :destroy_post
   resources :posts do
     resources :comments
-    post '/posts/:id' => 'posts#comment'
   end
+  post '/posts/:id' => 'posts#comment'
 
   delete '/logout' => 'sessions#destroy', as: :logout
   resources :sessions, only: [:new, :create]

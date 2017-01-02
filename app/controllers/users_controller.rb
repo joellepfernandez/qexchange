@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-     if @user.update(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password], photo_url: params[:user][:photo_url], age: params[:user][:age], location: params[:user][:location])
+     if @user.update(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password], photo_url: params[:user][:photo_url], age: params[:user][:age], location: params[:user][:location], facebook_url: params[:user][:facebook_url], instagram_url: params[:user][:instagram_url], twitter_url: params[:user][:twitter_url], tumblr_url: params[:user][:tumblr_url], linkedin_url: params[:user][:linkedin_url])
        redirect_to user_path(@user)
     else
       render :edit
@@ -47,7 +47,6 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-
 
   def user_params
     return params.require(:user).permit(:name, :email, :password, :password_confirmation)

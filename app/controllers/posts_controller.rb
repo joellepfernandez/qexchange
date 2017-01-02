@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all
+    @post = Post.new
   end
 
   def new
@@ -9,12 +10,12 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @new_comment=Comment.new
   end
 
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-
     if @post.save
       redirect_to posts_path
     else
@@ -28,7 +29,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-     if @post.update(title: params[:post][:title], content: params[:post][:content], photo_url: params[:post][:photo_url])
+     if @post.update(title: params[:post][:title], content: params[:post][:content], photo_url: params[:post][:photo_url], location: params[:post][:location], category: params[:post][:category])
        redirect_to post_path(@post)
     else
       render :edit
@@ -37,7 +38,7 @@ class PostsController < ApplicationController
 
   def comment
     @post = Post.find(params[:id])
-    Comment.create({post: @post, body: params[:comment][:content], user: current_user})
+    Comment.create({post: @post, content: params[:comment][:content], user: current_user})
     redirect_to post_path(@post)
   end
 
@@ -48,6 +49,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    return params.require(:post).permit(:category, :title, :price, :location)
+    return params.require(:post).permit(:category, :title, :price, :location, :content)
   end
 end

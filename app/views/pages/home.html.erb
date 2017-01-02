@@ -1,1 +1,174 @@
-<h1>main page with giant picture</h1>
+<style media="screen">
+  body{
+    background: url('/assets/city.jpg') no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+    }
+
+  .navbar-default {
+     background-color:transparent !important;
+     border-color:transparent;
+     background-image:none;
+     box-shadow:none;
+  }
+  .navbar-default .navbar-brand {
+      color: #ffffff;
+  }
+  .navbar-default .navbar-nav>li>a {
+    color: #ffffff;
+  }
+  .img_preview{
+    /*width: 60%;*/
+    border: 2px solid #ffffff;
+    margin: auto;
+  }
+  .pic-menu{
+    margin-top: 10%;
+  }
+  h1{
+    font-size: 7em;
+    color: #ffffff;
+  }
+  .search-bar{
+    margin: auto;
+    width: 50%;
+    margin-top: 3%;
+  }
+  .input-group .form-control:not(:first-child):not(:last-child), .input-group-addon:not(:first-child):not(:last-child), .input-group-btn:not(:first-child):not(:last-child) {
+    border-radius: 4px;
+  }
+
+  /*link rollover*/
+  .hovereffect {
+  /*width: 60%;*/
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+  /*background: #42b078;*/
+}
+
+.hovereffect .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  padding: 50px 20px;
+}
+
+.hovereffect img {
+  display: block;
+  position: relative;
+  max-width: none;
+  width: calc(100% + 20px);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(-10px,0,0);
+  transform: translate3d(-10px,0,0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.hovereffect:hover img {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.hovereffect h2 {
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  overflow: hidden;
+  padding: 2.75em 0;
+  background-color: transparent;
+}
+
+.hovereffect h2:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  content: '';
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+  -webkit-transform: translate3d(-100%,0,0);
+  transform: translate3d(-100%,0,0);
+}
+
+.hovereffect:hover h2:after {
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.hovereffect a, .hovereffect p {
+  color: #FFF;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(100%,0,0);
+  transform: translate3d(100%,0,0);
+}
+
+.hovereffect:hover a, .hovereffect:hover p {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+</style>
+<h1 class="text-center">Buy. Sell. Connect.</h1>
+  <div class="col-lg-12">
+    <div class="input-group search-bar ">
+      <%= form_tag search_path, method: 'get', class: 'input-group' do%>
+        <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'What are you looking for?' %>
+        <span class="input-group-btn">
+          <%= button_tag(type: "submit", class: "btn btn-default", name: 'nil') do %>
+            <i class="glyphicon glyphicon-search"></i>
+          <% end %>
+        </span>
+      <!-- <% end %> -->
+    </div>
+  </div>
+<div class="row pic-menu">
+    <div class="col-md-3 hovereffect">
+      <%= image_tag 'la-square.jpg', class:"img_preview img-responsive text-center" %>
+        <div class="overlay">
+          <h2>Los Angeles</h2>
+            <p><a href="#">Show Me</a></p>
+        </div>
+    </div>
+    <div class="col-md-3 hovereffect">
+      <%= image_tag 'chicago-square.jpg', class:"img_preview img-responsive text-center" %>
+      <div class="overlay">
+        <h2>Chicago</h2>
+          <p><a href="#">Show Me</a></p>
+      </div>
+    </div>
+    <div class="col-md-3 hovereffect">
+      <%= image_tag 'ny-square.jpg', class:"img_preview img-responsive text-center" %>
+      <div class="overlay">
+        <h2>New York City</h2>
+          <p><a href="#">Show Me</a></p>
+      </div>
+    </div>
+    <div class="col-md-3 hovereffect">
+      <%= image_tag 'sf-square.jpg', class:"img_preview img-responsive text-center" %>
+      <div class="overlay">
+        <h2>San Francisco</h2>
+          <p><a href="#">Show Me</a></p>
+      </div>
+    </div>
+  </div>

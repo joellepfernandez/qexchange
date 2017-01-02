@@ -7,6 +7,20 @@
   <%= csrf_meta_tags %>
   <!--bootstrap-->
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <style media="screen">
+    .sign-up-padding {
+      padding-right: 1%;
+    }
+    a:link {
+      text-decoration: none;
+    }
+    a:visited {
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar navbar-default">
@@ -21,22 +35,27 @@
         </button>
         <a class="navbar-brand" href="/">QExchange</a>
       </div>
-
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="/users">Home<span class="sr-only">(current)</span></a></li>
+      <ul class="nav navbar-nav">
+          <li class="menu-color"><a href="/users">Home<span class="sr-only">(current)</span></a></li>
           <li><a href="/about">About<span class="sr-only">(current)</span></a></li>
-          <li><a href="/categories">Categories<span class="sr-only">(current)</span></a></li>
         </ul>
-      </div><!-- /.navbar-collapse -->
-      <div>
-        <% if logged_in? %>
-        <%= link_to "Logout", logout_path, {method: "DELETE"} %>
-      <% else %>
-        <%= link_to "Login", new_session_path %>
-      <% end %>
-    </div>
+      <ul class="nav navbar-nav navbar-right sign-up-padding">
+        <!-- <button type="button" class="btn btn-default navbar-btn"> -->
+          <% if logged_in? %>
+            <button type="button" class="btn btn-default navbar-btn">
+              <%= link_to "Logout", logout_path, {method: "DELETE"} %>
+            </button>
+          <% else %>
+            <button type="button" class="btn btn-default navbar-btn">
+              <%= link_to "Login", new_session_path %>
+            </button>
+            <button type="button" class="btn btn-default navbar-btn">
+            <%= link_to "Sign Up", new_user_path %>
+            </button>
+          <% end %>
+        <!-- </button> -->
+      </ul>
     </div><!-- /.container-fluid -->
   </nav>
   <div class="container">

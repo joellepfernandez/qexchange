@@ -1,31 +1,125 @@
-<div class="row">
-  <div class="col-xs-3">
-    <% if logged_in? %>
-    <h1>Signed in as:</h1>
-    <%= image_tag current_user.photo_url, class: "img-responsive" %>
-    <p>Name: <%= current_user.name %></p>
-    <p>Age: <%= current_user.age %></p>
-    <p>Location: <%= current_user.location %></p>
-    <p><%= link_to('Edit my profile', edit_user_path(current_user.id)) %></p>
-    <p><%= link_to('Make a Post', new_post_path) %></p>
-    <p><%= link_to "Logout", logout_path, {method: "DELETE"} %></p>
-    <% end %>
-  </div>
-  <div class="col-xs-9">
-    <h1>All Posts</h1>
-      <ul>
-        <% @posts.each do |p| %>
-        <li><%= link_to p.title, post_path(p.id)%></li>
+<style media="screen">
+.thumbnail {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    margin: .15% auto;
+    padding: 0;
+    border-radius: 0;
+}
+.category-style{
+  width: 100px;
+  height: 100px;
+  margin: 0 1%;
+}
+.center {
+  margin: 0 auto !important;
+  display: inline-block !important;
+}
+.border{
+  border: 1px solid lightgray;
+  height: 100%;
+  border-radius: 4px;
+}
+.user{
+  margin-bottom: 5%;
+  background-color: #F8F8F8;
+  width: 100%;
+}
+.favorites{
+  margin-bottom: 5%;
+  background-color: #F8F8F8;
+}
+.user-posts {
+  background-color: #F8F8F8;
+  padding: 5%;
+}
+.dashboard {
+  background-color: #F8F8F8;
+}
+.padding{
+  padding: 5%;
+}
+.all-users-style{
+  padding: 2%;
+}
+.post-console {
+  width: 50px;
+  height: 50px;
+}
+.btn-group-justified>.btn-group .btn {
+    width: 50%;
+    margin: 0 25%;
+}
+.dropdown{
+  text-align:center;
+}
+.button, .dropdown-menu{
+  margin:10px auto
+}
+.dropdown-menu{
+  width:200px; left:50%; margin-left:-100px;
+}
+.center-block {
+  float: none !important;
+  margin: 0 auto !important;
+}
+.shadow{
+  -webkit-box-shadow: 10px 10px 53px -17px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 53px -17px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 53px -17px rgba(0,0,0,0.75);
+}
+</style>
+<% if logged_in? %>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="border shadow user"><!-- User Module -->
+        <%= image_tag current_user.photo_url, class: "img-responsive img-circle padding" %>
+          <h4 class="text-center"><%= current_user.name %></h4>
+          <h6 class="text-center"><%= link_to('Edit my profile', edit_user_path(current_user.id)) %> | <%= link_to('Make a Post', new_post_path) %></h6>
+      </div><!-- End User Module-->
+    <div class="border favorites shadow"><!-- Favorites-->
+      <h4 class="text-center">Favorites</h4>
+    </div><!-- End Favorites-->
+    <div class="border user-posts shadow"><!-- User Posts Module-->
+      <h4 class="text-center">My Posts</h4>
+      <% @posts.where(user: current_user).each do |p| %>
+        <div class="grid center">
+          <%= link_to image_tag(p.photo_url ||= "no-image.png", class: "post-console"), post_path(p.id) %>
+          <h6 class="center"><%= link_to p.title, post_path(p.id) %></h6>
+        </div>
         <% end %>
-      </ul>
-    <h1>All Users</h1>
-    <% @users.each do |u| %>
-    <ul>
-      <li><%= link_to u.name, user_path(u.id)%></li>
-    </ul>
-    <% end %>
-  </div>
-</div>
-
-
-<!-- belongs_to :user | has_many :posts ... define @user to = User.first ... @user.posts should have a list of the posts made by user-->
+      <% end %><!-- End Login-->
+    </div><!-- End User Posts Module-->
+  </div><!-- End of Left Column-->
+  <div class="col-sm-9"><!-- Right Column-->
+    <div class="border dashboard "><!-- Dashboard-->
+      <% if logged_in? %>
+        <h1 class="text-center"><%= current_user.name %>'s Dashboard</h1>
+          <hr>
+          <% end %><!-- End Login-->
+              <h1 class="text-center">Browse by Category</h1>
+              <div class="dropdown"><!-- Dropdown-->
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                  Select a category to browse
+                  <span class="caret"></span>
+                </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="/categories/services">Services</a></li>
+                    <li><a href="/categories/furniture">Furniture</a></li>
+                    <li><a href="/categories/meetups">Meet Ups</a></li>
+                    <li><a href="/categories/jobs">Jobs</a></li>
+                    <li><a href="/categories/housing">Housing</a></li>
+                    <li><a href="/categories/freestuff">Free Stuff</a></li>
+                  </ul>
+              </div><!-- End dropdown-->
+              <div class="center-block all-users-style"><!-- Users-->
+                <h1 class="text-center">All Users</h1>
+                  <% @users.each do |u| %>
+                    <%= link_to image_tag(u.photo_url ||= "no-image.png", class: "thumbnail img-responsive center-block"), user_path(u.id)%>
+                    <% end %>
+              </div><!-- End Users-->
+    </div><!-- End Dashboard-->
+</div><!-- End Right Column-->

@@ -1,12 +1,73 @@
-<h1><%= @post.title %></h1>
-<%= @post.inspect %>
-<%= image_tag @post.photo_url, class: "img-responsive" %>
-<p>Price: $<%= @post.price %></p>
-<p>Location: <%= @post.location %></p>
-<%= link_to('Edit me', edit_post_path(@post.id)) %>
-<%= link_to('Delete me', destroy_post_path, method: :delete) %>
+<style media="screen">
+  .post-style{
+    width: 10%;
+  }
+  .category-style{
+    font-size: .5em;
+  }
+  .comment-style{
+    /*margin: auto;*/
+    background-color: lightgrey;
+    padding: 1%;
+    border-radius: 4px;
+  }
+  .full {
+    width: 100%;
+  }
+  .btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    width: 100%;
+  }
+  .comment-console{
+    margin-bottom: 5%;
+    background-color: #F8F8F8;
+    border-radius: 4px;
+    padding: .5% 2% 1% 2%;
+  }
+  .comment-photo{
+    width: 15%;
+  }
+  .post-console{
+    margin-bottom: 5%;
+    background-color: #F8F8F8;
+    border-radius: 4px;
+    padding: .5% 2% 1% 2%;
+  }
+</style>
+<h1 class="white text-center"><%= @post.title %> <span class="category-style">(<%= @post.category %>)</span>
+  <a href="#" class="btn white"><span class="glyphicon glyphicon-heart"></span></a></h1>
 
-<%= form_for @post.comments.new, url: post_path(@post) do |f| %>
-  <%= f.text_area :content %>
-  <%= f.submit %>
-<% end %>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="post-console">
+        <h3 class="text-center">Price: $<%= @post.price %> Location: <%= @post.location %></h3>
+        <h6 class="text-center">Created on: <%= @post.created_at.strftime("%b %d, %Y") %> | Updated on: <%= @post.updated_at.strftime("%b %d, %Y") %></h6>
+        <%= image_tag @post.photo_url, class: "text-center img-responsive" %>
+        <h6 class= "text-center">Posted by: <%= link_to(@post.user.name, user_path(@post.user_id)) %></h6>
+        <h3><%= @post.content %></h3>
+        <h6  class= "text-center"><%= link_to('Edit me', edit_post_path(@post.id)) %> |
+        <%= link_to('Delete me', destroy_post_path, method: :delete) %></h6>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="comment-console">
+        <h3 class="text-center">Comments</h3>
+          <%= form_for @new_comment, url: post_path(@post) do |f| %>
+            <%= f.text_area :content, class: 'form-control'%>
+            <span class="">
+              <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                <i class="glyphicon glyphicon-share"> Share</i>
+              <% end %>
+            </span>
+          <% end %>
+          <hr>
+          <% @post.comments.each do |c| %>
+            <h5> <%= image_tag c.user.photo_url, class: "comment-photo img-circle" %> <%= c.content %></h5>
+            <h6>Posted by: <%= link_to c.user.name if c.user %> | <%= time_ago_in_words(c.created_at) %> </h6>
+            <hr>
+          <% end %>
+      </div>
+    </div>
+  </div>

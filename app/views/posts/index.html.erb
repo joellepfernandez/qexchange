@@ -1,6 +1,22 @@
-<h1>Posts#index</h1>
-  <ul>
-    <% @posts.each do |p| %>
-    <li><%= link_to p.title, post_path(p.id)%></li>
-    <% end %>
-  </ul>
+<style media="screen">
+  .post-style{
+    /*width: 20%;
+    height: 20%;*/
+    border: 2px lightgrey solid;
+  }
+  .thumbnail {
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      margin: .15% auto;
+      padding: 0;
+      /*border-radius: 0;*/
+  }
+</style>
+
+<h1>All Posts</h1>
+<% @posts.each do |p| %>
+<%= link_to image_tag(p.photo_url ||= "no-image.png", class: "post-style thumbnail"), post_path(p.id)%>
+<% end %>
