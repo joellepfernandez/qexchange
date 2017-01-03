@@ -23,6 +23,14 @@ Rails.application.routes.draw do
 
   get '/safety' => 'pages#safety'
 
+  get '/chicago' => 'pages#chicago', as: :chicago
+
+  get '/losangeles' => 'pages#los_angeles', as: :los_angeles
+
+  get '/sanfrancisco' => 'pages#san_francisco', as: :san_francisco
+
+  get '/newyorkcity' => 'pages#new_york_city', as: :new_york_city
+
   get '/categories'=> 'pages#categories'
 
   get '/categories/furniture' => 'pages#furniture', as: :furniture
@@ -44,7 +52,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
-  
+
   post '/posts/:id' => 'posts#comment'
 
   delete '/logout' => 'sessions#destroy', as: :logout

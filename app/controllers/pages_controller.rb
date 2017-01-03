@@ -42,6 +42,26 @@ class PagesController < ApplicationController
     @housing = Post.find_by_category('housing')
   end
 
+  def los_angeles
+    @posts = Post.all
+    @los_angeles = Post.find_by_location('Los Angeles')
+  end
+
+  def san_francisco
+    @posts = Post.all
+    @san_francisco = Post.find_by_location('San Francisco')
+  end
+
+  def new_york_city
+    @posts = Post.all
+    @new_york_city = Post.find_by_location('New York City')
+  end
+
+  def chicago
+    @posts = Post.all
+    @chicago = Post.find_by_location('Chicago')
+  end
+
   def help
   end
 

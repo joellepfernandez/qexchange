@@ -54,7 +54,6 @@
         <h6 class="text-center">Created on: <%= @post.created_at.strftime("%b %d, %Y") %> | Updated on: <%= @post.updated_at.strftime("%b %d, %Y") %></h6>
         <h6 class= "text-center">Posted by: <%= link_to(@post.user.name, user_path(@post.user_id)) %></h6>
         <%= image_tag @post.photo_url, class: "text-center img-responsive" %>
-        <h6>Posted By: <%= @post.inspect %></h6>
         <h3><%= @post.content %></h3>
         <h6 class= "text-center"><%= link_to('Edit Post', edit_post_path(@post.id)) %> |
         <%= link_to('Delete Post', destroy_post_path, method: :delete) %></h6>
