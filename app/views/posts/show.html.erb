@@ -35,25 +35,34 @@
     border-radius: 4px;
     padding: .5% 2% 1% 2%;
   }
+  .shadow{
+    -webkit-box-shadow: 10px 10px 53px -17px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 53px -17px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 53px -17px rgba(0,0,0,0.75);
+  }
 </style>
-<h1 class="white text-center"><%= @post.title %> <span class="category-style">(<%= @post.category %>)</span>
-  <a href="#" class="btn white"><span class="glyphicon glyphicon-heart"></span></a></h1>
-
+<h1 class="text-center"><%= @post.title %> <span class="category-style">(<%= @post.category %>)</span>
+  <% unless current_user.favorite_posts.exists?(id: @post.id) %>
+    <%= link_to raw('<span class="glyphicon glyphicon-heart"></span>'), favorite_posts_path(post_id: @post), method: :post, class: "pink" %>
+  <% else %>
+  <%= link_to raw('<span class="glyphicon glyphicon-heart"></span>'), destroy_favorite_post_path, method: :delete, class: "white" %>
+  <% end %></h1>
   <div class="row">
-    <div class="col-sm-8">
-      <div class="post-console">
+    <div class="col-sm-8"><!--Left Column -->
+      <div class="post-console shadow"><!--Post Console -->
         <h3 class="text-center">Price: $<%= @post.price %> Location: <%= @post.location %></h3>
         <h6 class="text-center">Created on: <%= @post.created_at.strftime("%b %d, %Y") %> | Updated on: <%= @post.updated_at.strftime("%b %d, %Y") %></h6>
-        <%= image_tag @post.photo_url, class: "text-center img-responsive" %>
         <h6 class= "text-center">Posted by: <%= link_to(@post.user.name, user_path(@post.user_id)) %></h6>
+        <%= image_tag @post.photo_url, class: "text-center img-responsive" %>
+        <h6>Posted By: <%= @post.inspect %></h6>
         <h3><%= @post.content %></h3>
-        <h6  class= "text-center"><%= link_to('Edit me', edit_post_path(@post.id)) %> |
-        <%= link_to('Delete me', destroy_post_path, method: :delete) %></h6>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="comment-console">
-        <h3 class="text-center">Comments</h3>
+        <h6 class= "text-center"><%= link_to('Edit Post', edit_post_path(@post.id)) %> |
+        <%= link_to('Delete Post', destroy_post_path, method: :delete) %></h6>
+      </div><!--End of Post Console-->
+    </div><!--End of Column -->
+    <div class="col-sm-4"><!--Right Column -->
+      <div class="comment-console"><!--Comment Console -->
+        <h3 class="text-center shadow">Comments</h3>
           <%= form_for @new_comment, url: post_path(@post) do |f| %>
             <%= f.text_area :content, class: 'form-control'%>
             <span class="">
@@ -68,6 +77,6 @@
             <h6>Posted by: <%= link_to c.user.name if c.user %> | <%= time_ago_in_words(c.created_at) %> </h6>
             <hr>
           <% end %>
-      </div>
-    </div>
-  </div>
+      </div><!--End Comment Console -->
+    </div><!--End of Right Column -->
+  </div><!--End of Row -->

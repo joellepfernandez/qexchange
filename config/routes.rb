@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'favorite_posts/create'
+
+  delete '/posts/:id'=> 'favorite_posts#destroy', as: :destroy_favorite_post
+
+  get 'favorite_posts/:id' => 'favorite_posts#set_post', as: :favorite_post
+
   root 'pages#home'
 
   get '/search' => 'pages#search', as: :search
@@ -38,8 +44,11 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+  
   post '/posts/:id' => 'posts#comment'
 
   delete '/logout' => 'sessions#destroy', as: :logout
   resources :sessions, only: [:new, :create]
+
+  resources :favorite_posts, only: [:create, :destroy]
 end

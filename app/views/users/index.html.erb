@@ -81,13 +81,17 @@
           <h6 class="text-center"><%= link_to('Edit my profile', edit_user_path(current_user.id)) %> | <%= link_to('Make a Post', new_post_path) %></h6>
       </div><!-- End User Module-->
     <div class="border favorites shadow"><!-- Favorites-->
-      <h4 class="text-center">Favorites</h4>
+      <h4 class="text-center">Favorites
+        <span class="glyphicon glyphicon-heart"></span></h4>
+        <div class="grid center">
+        </div>
+
     </div><!-- End Favorites-->
     <div class="border user-posts shadow"><!-- User Posts Module-->
       <h4 class="text-center">My Posts</h4>
       <% @posts.where(user: current_user).each do |p| %>
         <div class="grid center">
-          <%= link_to image_tag(p.photo_url ||= "no-image.png", class: "post-console"), post_path(p.id) %>
+          <%= link_to image_tag(p.photo_url ||= "no-image.png", class: "post-console img-circle"), post_path(p.id) %>
           <h6 class="center"><%= link_to p.title, post_path(p.id) %></h6>
         </div>
         <% end %>

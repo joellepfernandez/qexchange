@@ -1,6 +1,12 @@
 source 'https://rubygems.org'
 
 ruby "2.3.1"
+#hide environment variables
+gem 'dotenv-rails', group: :development, require: 'dotenv/rails-now'
+#photo uploads
+gem 'aws-sdk'
+gem 'paperclip'
+
 gem 'pg_search'
 gem 'rails_12factor', group: :production
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

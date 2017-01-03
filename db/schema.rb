@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170102194231) do
+ActiveRecord::Schema.define(version: 20170103191543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20170102194231) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "favorited_id"
+    t.string   "favorited_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "favorites", ["favorited_type", "favorited_id"], name: "index_favorites_on_favorited_type_and_favorited_id", using: :btree
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "pages", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -46,12 +57,15 @@ ActiveRecord::Schema.define(version: 20170102194231) do
     t.string   "title"
     t.integer  "price"
     t.string   "location"
-    t.string   "photo_url"
     t.string   "content"
     t.string   "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "user_id"
+    t.string   "photo_url_file_name"
+    t.string   "photo_url_content_type"
+    t.integer  "photo_url_file_size"
+    t.datetime "photo_url_updated_at"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
@@ -67,12 +81,16 @@ ActiveRecord::Schema.define(version: 20170102194231) do
     t.string   "instagram_url"
     t.string   "tumblr_url"
     t.string   "location"
-    t.string   "photo_url"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "photo_url_file_name"
+    t.string   "photo_url_content_type"
+    t.integer  "photo_url_file_size"
+    t.datetime "photo_url_updated_at"
   end
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "users"
   add_foreign_key "posts", "users"
 end
