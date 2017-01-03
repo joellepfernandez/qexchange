@@ -1,0 +1,53 @@
+/* line 4, /Users/joellepfernandez/WDI_Workspace/qexchange_app/app/assets/stylesheets/posts.scss */
+.post-caption {
+  color: #ffffff !important;
+}
+
+/* line 7, /Users/joellepfernandez/WDI_Workspace/qexchange_app/app/assets/stylesheets/posts.scss */
+.white {
+  color: #ffffff !important;
+}
+
+/* line 10, /Users/joellepfernandez/WDI_Workspace/qexchange_app/app/assets/stylesheets/posts.scss */
+.pink {
+  color: #D556B5 !important;
+}
+/* line 4, /Users/joellepfernandez/WDI_Workspace/qexchange_app/app/assets/stylesheets/users.scss */
+body {
+  background-color: #527488 !important;
+}
+
+/* line 7, /Users/joellepfernandez/WDI_Workspace/qexchange_app/app/assets/stylesheets/users.scss */
+.navbar-default {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  background-image: none;
+  box-shadow: none;
+  border-color: none !important;
+}
+
+/* line 14, /Users/joellepfernandez/WDI_Workspace/qexchange_app/app/assets/stylesheets/users.scss */
+.navbar-default .navbar-brand {
+  color: #ffffff !important;
+}
+
+/* line 17, /Users/joellepfernandez/WDI_Workspace/qexchange_app/app/assets/stylesheets/users.scss */
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff !important;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
