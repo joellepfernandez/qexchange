@@ -4,6 +4,12 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def search
+    @posts = Post.where("title iLIKE :search OR location iLIKE :search OR content iLIKE :search OR category iLIKE :search", search: "%#{params[:query]}%")
+
+    render 'index'
+  end
+
   def new
     @post = Post.new
   end

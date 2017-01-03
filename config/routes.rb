@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
-  get '/search' => 'pages#search', as: :search
+  get '/search' => 'posts#search', as: :search
 
   get '/help' => 'pages#help', as: :help
 

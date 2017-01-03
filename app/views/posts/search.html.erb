@@ -1,0 +1,8 @@
+<h1>search</h1>
+
+
+<% if @posts.count > 0 %>
+  <%= @posts.inspect %>
+<% else %>
+  <p>There are no posts containing the term(s) <%= params[:query] %>.</p>
+<% end %>
