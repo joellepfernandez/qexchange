@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+img:not(.post-console):not(.favorites):not(.profile-image):not(.social-icon):not(.post-style) {
+  width: 100%!important;
+}

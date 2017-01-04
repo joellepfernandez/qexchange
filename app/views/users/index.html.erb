@@ -1,7 +1,7 @@
 <style media="screen">
 .thumbnail {
-    width: 150px;
-    height: 150px;
+    /*width: 150px;
+    height: 150px;*/
     overflow: hidden;
     position: relative;
     display: inline-block;
@@ -73,35 +73,41 @@
   -moz-box-shadow: 10px 10px 53px -17px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 53px -17px rgba(0,0,0,0.75);
 }
+.row{
+  margin-bottom: 20px; !important;
+}
+.list-group-item{
+  background-color: transparent;
+  border: none;
+}
 </style>
 <% if logged_in? %>
   <div class="row">
     <div class="col-sm-3">
-      <div class="border shadow user"><!-- User Module -->
-        <%= image_tag current_user.photo_url, class: "img-responsive img-circle padding" %>
+      <div class="border shadow user text-center"><!-- User Module -->
+        <%= image_tag current_user.photo_url, class: "img-circle padding" %>
           <h4 class="text-center"><%= current_user.name %></h4>
           <h6 class="text-center"><%= link_to('Edit my profile', edit_user_path(current_user.id)) %> | <%= link_to('Make a Post', new_post_path) %></h6>
       </div><!-- End User Module-->
     <div class="border favorites shadow"><!-- Favorites-->
       <h4 class="text-center">Favorites
         <span class="glyphicon glyphicon-heart"></span></h4>
+        <ul class="list-group">
         <% current_user.favorites.each do |f| %>
-        <div class="grid center">
-        <%= link_to image_tag(f.favorited.photo_url, class: "post-console img-circle"), post_path(f.favorited.id)%>
-        <h6 class="center"><%= link_to f.favorited.title, post_path(f.favorited.id)%></h6>
-        </div>
+          <li class="list-group-item"><%= link_to image_tag(f.favorited.photo_url, class: "post-console img-circle"), post_path(f.favorited.id)%>
+          <h6 class="center"><%= link_to f.favorited.title, post_path(f.favorited.id)%></h6></li>
         <% end %>
-
+        </ul>
 
     </div><!-- End Favorites-->
     <div class="border user-posts shadow"><!-- User Posts Module-->
       <h4 class="text-center">My Posts</h4>
-      <% @posts.where(user: current_user).each do |p| %>
-        <div class="grid center">
-          <%= link_to image_tag(p.photo_url ||= "no-image.png", class: "post-console img-circle"), post_path(p.id) %>
-          <h6 class="center"><%= link_to p.title, post_path(p.id) %></h6>
-        </div>
-        <% end %>
+      <ul class="list-group">
+          <% @posts.where(user: current_user).each do |p| %>
+            <li class="list-group-item"><%= link_to image_tag(p.photo_url ||= "no-image.png", class: "post-console img-circle"), post_path(p.id) %>
+              <h6 class="center"><%= link_to p.title, post_path(p.id) %></h6></li>
+          <% end %>
+      </ul>
     </div><!-- End User Posts Module-->
   </div><!-- End of Left Column-->
   <% end %><!-- End Login-->
@@ -128,15 +134,45 @@
               </div><!-- End dropdown-->
               <div class="center-block all-users-style"><!-- Users-->
                 <h1 class="text-center">All Users</h1>
-                  <% @users.each do |u| %>
-                    <%= link_to image_tag(u.photo_url ||= "no-image.png", class: "thumbnail img-responsive center-block"), user_path(u.id)%>
-                    <% end %>
+                <div>
+                  <% @users.each_slice(4) do |user_row| %>
+                    <div class="row">
+                      <% user_row.each do |u| %>
+                        <div class="col-md-3">
+                          <%= link_to image_tag(u.photo_url ||= "no-image.png", class: "thumbnail img-responsive center-block"), user_path(u.id)%>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
               </div><!-- End Users-->
     </div><!-- End Dashboard-->
 </div><!-- End Right Column-->
 <% end %><!-- End Login-->
 <% if !logged_in? %>
 <div class="center">
-  <h1 class="white">Please log in.</h1>
+  <h1 class="white">Please log in to access QExchange fully.</h1>
+  <%= form_tag sessions_path,{:class => 'form-horizontal'} do %>
+      <fieldset>
+          <div class="form-group">
+              <%= label_tag :email, 'Email', class: 'col-md-4 control-label white' %>
+              <div class="col-md-5">
+                  <%= text_field_tag :email, params[:email], class: 'form-control' %>
+              </div>
+          </div>
+          <div class="form-group">
+              <%= label_tag :password, 'Password', class: 'col-md-4 control-label white' %>
+              <div class="col-md-5">
+                  <%= password_field_tag :password, nil, class: 'form-control' %>
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="col-md-8 col-md-offset-4">
+                  <%= submit_tag 'Log in', class: 'btn btn-success' %>
+                  <%= link_to "Don't have an account?", new_user_path, class: 'btn btn-primary' %>
+              </div>
+          </div>
+      </fieldset>
+  <% end %>
 </div>
 <% end %>
