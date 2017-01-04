@@ -1,14 +1,15 @@
-QExchange
+#QExchange
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-* Ruby version
+##Ruby version
 ruby 2.3.1
-* System dependencies
+
+##System dependencies
 Bootstrap, Amazon Web Services, Paperclip, dotenv-rails, bcrypt  
 
-* Database creation
+##Database creation
 Postgresql
 
-* Deployment instructions
+##Deployment instructions
 https://rocky-forest-11054.herokuapp.com/about
