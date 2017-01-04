@@ -31,6 +31,7 @@
 .favorites{
   margin-bottom: 5%;
   background-color: #F8F8F8;
+  padding: 5%;
 }
 .user-posts {
   background-color: #F8F8F8;
@@ -91,6 +92,7 @@
         </div>
         <% end %>
 
+
     </div><!-- End Favorites-->
     <div class="border user-posts shadow"><!-- User Posts Module-->
       <h4 class="text-center">My Posts</h4>
@@ -100,15 +102,15 @@
           <h6 class="center"><%= link_to p.title, post_path(p.id) %></h6>
         </div>
         <% end %>
-      <% end %><!-- End Login-->
     </div><!-- End User Posts Module-->
   </div><!-- End of Left Column-->
+  <% end %><!-- End Login-->
+  <% if logged_in? %>
   <div class="col-sm-9"><!-- Right Column-->
+
     <div class="border dashboard "><!-- Dashboard-->
-      <% if logged_in? %>
         <h1 class="text-center"><%= current_user.name %>'s Dashboard</h1>
           <hr>
-          <% end %><!-- End Login-->
               <h1 class="text-center">Browse by Category</h1>
               <div class="dropdown"><!-- Dropdown-->
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
@@ -132,3 +134,9 @@
               </div><!-- End Users-->
     </div><!-- End Dashboard-->
 </div><!-- End Right Column-->
+<% end %><!-- End Login-->
+<% if !logged_in? %>
+<div class="center">
+  <h1 class="white">Please log in.</h1>
+</div>
+<% end %>
