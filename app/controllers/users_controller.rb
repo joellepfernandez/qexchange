@@ -31,7 +31,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to users_path
+      @user and @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to users_path(@user)
     else
       render :new
     end

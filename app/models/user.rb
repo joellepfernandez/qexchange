@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
                     path: "/:class/:attachment/:id_partition/:style/:filename",
                     s3_region: ENV["S3_REGION"],
                     s3_credentials: Proc.new{ |a| a.instance.s3_credentials}
-                    
+
   def s3_credentials
     {
       bucket: ENV["S3_BUCKET_NAME"],

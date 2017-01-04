@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'favorite_posts/create'
 
-  delete '/posts/:id'=> 'favorite_posts#destroy', as: :destroy_favorite_post
+  delete '/posts/:id/favorites'=> 'favorite_posts#destroy', as: :destroy_favorite_post
 
   get 'favorite_posts/:id' => 'favorite_posts#set_post', as: :favorite_post
 

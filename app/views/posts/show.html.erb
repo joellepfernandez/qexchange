@@ -44,9 +44,9 @@
 <h1 class="text-center"><%= @post.title %> <span class="category-style">(<%= @post.category %>)</span>
   <% if logged_in? %>
   <% unless current_user.favorite_posts.exists?(id: @post.id) %>
-    <%= link_to raw('<span class="glyphicon glyphicon-heart"></span>'), favorite_posts_path(post_id: @post), method: :post, class: "pink" %>
+    <%= link_to raw('<span class="glyphicon glyphicon-heart"></span>'), favorite_posts_path(post_id: @post), method: :post, class: "white" %>
   <% else %>
-  <%= link_to raw('<span class="glyphicon glyphicon-heart"></span>'), destroy_favorite_post_path, method: :delete, class: "white" %>
+  <%= link_to raw('<span class="glyphicon glyphicon-heart"></span>'), destroy_favorite_post_path, method: :delete, class: "pink" %>
   <% end %>
   <% end %>
 </h1>
