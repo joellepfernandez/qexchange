@@ -1,28 +1,14 @@
-== README
-
+QExchange
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
-
 * Ruby version
-
+ruby 2.3.1
 * System dependencies
-
-* Configuration
+Bootstrap, Amazon Web Services, Paperclip, dotenv-rails, bcrypt  
 
 * Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+Postgresql
 
 * Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+https://rocky-forest-11054.herokuapp.com/about
