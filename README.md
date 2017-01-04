@@ -11,8 +11,8 @@ As a user, I want to be able to search for a post.
 As a user, I want to be able to be able to delete my profile and post.
 
 ##Wireframes
-![alt text](/Users/joellepfernandez/WDI_Workspace/qexchange_app/app/assets/images/wireframe1.png)
-![alt text](/Users/joellepfernandez/WDI_Workspace/qexchange_app/app/assets/images/wireframe2.png)
+![alt text](/assets/images/wireframe1.png)
+![alt text](/assets/images/wireframe2.png)
 
 ##Technologies
 ###Ruby version
