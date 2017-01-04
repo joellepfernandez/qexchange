@@ -1,74 +1,74 @@
 <%= form_for @user, :html => {class: 'new_user form-horizontal'} do |f| %>
-<div class="row"><legend class="col-md-4 col-md-offset-4">Create Account:</legend></div>
+<div class="row"><legend class="col-md-4 col-md-offset-4"><h3 class="white">Create Account</h3></legend></div>
 <fieldset>
   <div class="form-group">
-      <%= f.label :name, 'Name*', class: 'col-md-4 control-label' %>
+      <%= f.label :name, 'Name*', class: 'col-md-4 control-label white' %>
         <div class="col-md-5">
             <%= f.text_field :name, class: 'form-control' %>
         </div>
     </div>
     <div class="form-group">
-        <%= f.label :email, 'Email*', class: 'col-md-4 control-label' %>
+        <%= f.label :email, 'Email*', class: 'col-md-4 control-label white' %>
         <div class="col-md-5">
             <%= f.text_field :email, class: 'form-control' %>
         </div>
     </div>
     <div class="form-group">
-        <%= f.label :age, 'Age*', class: 'col-md-4 control-label' %>
+        <%= f.label :age, 'Age', class: 'col-md-4 control-label white' %>
         <div class="col-md-5">
             <%= f.text_field :age, class: 'form-control' %>
         </div>
     </div>
     <div class="form-group">
-        <%= f.label :Location, 'Location*', class: 'col-md-4 control-label' %>
+        <%= f.label :Location, 'Location', class: 'col-md-4 control-label white' %>
         <div class="col-md-5">
             <%= f.text_field :location, class: 'form-control' %>
         </div>
     </div>
     <div class="form-group">
-        <%= f.label :photo_url, 'Photo Link*', class: 'col-md-4 control-label' %>
+        <%= f.label :photo_url, 'Photo Link', class: 'col-md-4 control-label white' %>
         <div class="col-md-5">
             <%= f.file_field :photo_url, class: 'form-control' %>
         </div>
     </div>
     <div class="form-group">
-        <%= f.label :facebook_url, 'Facebook Link*', class: 'col-md-4 control-label' %>
+        <%= f.label :facebook_url, 'Facebook Link', class: 'col-md-4 control-label white' %>
         <div class="col-md-5">
             <%= f.text_field :facebook_url, class: 'form-control' %>
         </div>
     </div>
     <div class="form-group">
-        <%= f.label :linkedin_url, 'Linkedin Link*', class: 'col-md-4 control-label' %>
+        <%= f.label :linkedin_url, 'Linkedin Link', class: 'col-md-4 control-label white' %>
         <div class="col-md-5">
             <%= f.text_field :linkedin_url, class: 'form-control' %>
         </div>
     </div>
     <div class="form-group">
-        <%= f.label :instagram_url, 'Instagram Link*', class: 'col-md-4 control-label' %>
+        <%= f.label :instagram_url, 'Instagram Link', class: 'col-md-4 control-label white' %>
         <div class="col-md-5">
             <%= f.text_field :instagram_url, class: 'form-control' %>
         </div>
     </div>
     <div class="form-group">
-        <%= f.label :twitter_url, 'Twitter Link*', class: 'col-md-4 control-label' %>
+        <%= f.label :twitter_url, 'Twitter Link', class: 'col-md-4 control-label white' %>
         <div class="col-md-5">
             <%= f.text_field :twitter_url, class: 'form-control' %>
         </div>
     </div>
     <div class="form-group">
-        <%= f.label :tumblr_url, 'Tumblr Link*', class: 'col-md-4 control-label' %>
+        <%= f.label :tumblr_url, 'Tumblr Link', class: 'col-md-4 control-label white' %>
         <div class="col-md-5">
             <%= f.text_field :tumblr_url, class: 'form-control' %>
         </div>
     </div>
     <div class="form-group">
-        <%= f.label :password, 'Password*', class: 'col-md-4 control-label' %>
+        <%= f.label :password, 'Password*', class: 'col-md-4 control-label white' %>
         <div class="col-md-5">
             <%= f.password_field :password, class: 'form-control' %>
         </div>
     </div>
     <div class="form-group">
-        <%= f.label :password_confirmation, 'Confirm Password*', class: 'col-md-4 control-label' %>
+        <%= f.label :password_confirmation, 'Confirm Password*', class: 'col-md-4 control-label white' %>
         <div class="col-md-5">
             <%= f.password_field :password_confirmation, class: 'form-control' %>
         </div>
