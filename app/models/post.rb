@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   has_attached_file :photo_url,
                     styles: { medium: "500x500#", thumb: "100x100#" },

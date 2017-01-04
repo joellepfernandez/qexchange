@@ -2,7 +2,7 @@
 
 
 <% if @posts.count > 0 %>
-  <%= @posts.inspect %>
+  <%= @posts.title %>
 <% else %>
   <p>There are no posts containing the term(s) <%= params[:query] %>.</p>
 <% end %>
