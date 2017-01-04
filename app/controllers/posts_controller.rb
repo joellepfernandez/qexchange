@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
     if @post.save
-      redirect_to posts_path
+      redirect_to posts_path(@post)
     else
       render :new
     end
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-     if @post.update(title: params[:post][:title], content: params[:post][:content], photo_url: params[:post][:photo_url], location: params[:post][:location], category: params[:post][:category])
+     if @post.update(post_params)
        redirect_to post_path(@post)
     else
       render :edit
